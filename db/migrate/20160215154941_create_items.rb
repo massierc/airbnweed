@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration
       t.string :photo
       t.boolean :in_stock
       t.integer :price
-      t.references :user_id, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false
     end
