@@ -11,10 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215153807) do
+ActiveRecord::Schema.define(version: 20160215155227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "deals", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "total_price"
+    t.integer  "rating"
+    t.integer  "item_id"
+    t.string   "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "deals", ["item_id"], name: "index_deals_on_item_id", using: :btree
+  add_index "deals", ["user_id"], name: "index_deals_on_user_id", using: :btree
+
+  create_table "items", force: :cascade do |t|
+    t.string   "name"
+    t.string   "photo"
+    t.boolean  "in_stock"
+    t.integer  "price"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "items", ["user_id"], name: "index_items_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -29,9 +54,20 @@ ActiveRecord::Schema.define(version: 20160215153807) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "photo"
+    t.string   "address"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "working_hours"
+    t.text     "description"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "deals", "items"
+  add_foreign_key "deals", "users"
+  add_foreign_key "items", "users"
 end
