@@ -35,6 +35,7 @@
         <input type="number" id="quantity", val="0">
         <%= f.input :total_price, as: :hidden, id: "total_price", class: "hidden" %>
         <p>Total price: <span id="total-price-text"></span>€</p>
+        <%= f.input :message %>
         <%= f.submit %>
       <% end %>
     </div>
@@ -49,9 +50,11 @@
         <p><strong>Average score: <%= average_score(@user) %>/5</strong></p>
         <ul>
           <% @user.deals.each do |deal| %>
-            <li>
-              <%= "*" * deal.rating %> by <%= deal.user.name %>
-            </li>
+            <% unless deal.rating.nil? %>
+              <li>
+                <%= "*" * deal.rating %> by <%= deal.user.name %>
+              </li>
+            <% end %>
           <% end %>
         </ul>
       <% end %>

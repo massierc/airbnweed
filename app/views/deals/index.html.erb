@@ -47,6 +47,9 @@
             <li>
               (<%= deal.created_at.strftime("%d-%m-%y: %Hh%M") %>) <%= deal.total_price %>€ | <%= deal.item.name.upcase %> <br>
               from <%= deal.item.user.first_name + " " + deal.item.user.last_name %>  | status: <%= deal.status %>
+              <% unless deal.message.nil? %>
+                <br>>> Message:<br>>> <%= deal.message %>
+              <% end %>
               <br><%= link_to "Accept deal", "deals/#{deal.id}/accept", class: "btn btn-primary btn-sm" %>
               <%= link_to "Reject deal", "deals/#{deal.id}/cancel", class: "btn btn-danger btn-sm" %>
             </li>
