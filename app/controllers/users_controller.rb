@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show, :index]
   def index
     @dealers = User.select { |user| user.items != [] }
   end
