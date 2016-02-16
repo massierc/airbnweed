@@ -29,8 +29,6 @@ class DealsController < ApplicationController
 
   private
 
-
-
   def deal_params
     params.require(:deal).permit(:user, :total_price, :item)
   end

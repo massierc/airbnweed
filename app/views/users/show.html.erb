@@ -1,2 +1,22 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= @user.name %></h1>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <h2>Products</h2>
+      <ul>
+        <% @user.items.each do |item| %>
+          <li><%= item.name %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <%= simple_form_for([@user, @deal]) do |f| %>
+        <%= f.input :item, collection: @user.items, prompt: "choose a product" %>
+        <input type="number" name="quantity" >
+        <%= f.input :total_price, value: (item.price * quantity) %>
+      <% end %>
+    </div>
+  </div>
+</div>
