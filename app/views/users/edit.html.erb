@@ -4,6 +4,8 @@
       <h2>Edit</h2>
       <%= simple_form_for(current_user) do |f| %>
         <div class="form-inputs">
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
           <%= f.input :address %>
           <%= f.input :city%>
           <%= f.input :zipcode %>
