@@ -8,12 +8,13 @@
 
 
 100.times do
+  random_photo = "http://api.randomuser.me/portraits/#{rand > 0.5 ? "men" : "women"}/#{(rand * (96 - 1) + 1).round}.jpg"
   user = User.new(
     email: Faker::Internet.email,
     password: "dreamteam",
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    photo: Faker::Avatar.image,
+    photo: random_photo,
     address: Faker::Address.street_address,
     zipcode: Faker::Address.zip_code,
     city: Faker::Address.city,
