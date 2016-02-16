@@ -1,4 +1,22 @@
-<h1><%= @user.name %></h1>
+<% unless @user.items == [] %>
+  <div class="header">
+    <% if @user.items.first.name == "weed" %>
+      <%= image_tag "weed.jpg" %>
+    <% elsif @user.items.first.name == "MDMA" %>
+      <%= image_tag "MDMA.jpg" %>
+    <% elsif @user.items.first.name == "cocaïne" %>
+      <%= image_tag "cocaïne.jpg" %>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="text-center">
+  <%= cl_image_tag(@user.photo.path, height: 200, width: 200, fill: :crop, style: "border-radius: 50%") unless @user.photo.nil? %>
+  <h1><%= @user.name %></h1>
+  <p>From <%= @user.city %>, <%= @user.zipcode %></p>
+  <p>Available from <%= @user.start_time %>h to <%= @user.end_time %>h</p>
+</div>
+
 
 <div class="container">
   <div class="row">
@@ -11,12 +29,31 @@
       </ul>
     </div>
     <div class="col-xs-12 col-sm-6">
+      <h2 class="text-center">Make a deal</h2>
       <%= simple_form_for([@user, @deal]) do |f| %>
         <%= f.input :item, collection: @user.items, prompt: "choose a product", id: "item" %>
         <input type="number" id="quantity", val="0">
         <%= f.input :total_price, as: :hidden, id: "total_price", class: "hidden" %>
         <p>Total price: <span id="total-price-text"></span>€</p>
         <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="co-xs-12">
+      <hr>
+      <p><%= @user.description %></p>
+      <% unless @user.items == [] %>
+        <hr>
+        <h2>Ratings</h2>
+        <p><strong>Average score: <%= average_score(@user) %>/5</strong></p>
+        <ul>
+          <% @user.deals.each do |deal| %>
+            <li>
+              <%= "*" * deal.rating %> by <%= deal.user.name %>
+            </li>
+          <% end %>
+        </ul>
       <% end %>
     </div>
   </div>
