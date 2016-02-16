@@ -16,7 +16,7 @@
     photo: Faker::Avatar.image,
     address: Faker::Address.street_address,
     zipcode: Faker::Address.zip_code,
-    city: Faker::Address,
+    city: Faker::Address.city,
     description: Faker::Hipster.paragraph)
   user.save
 end
