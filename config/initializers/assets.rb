@@ -2,7 +2,7 @@
 
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
-Rails.application.config.assets.precompile += %w( airbnweed.png )
+Rails.application.config.assets.precompile += %w( airbnweed.png weed.jpg MDMA.jpg cocaïne.jpg )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path

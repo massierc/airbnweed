@@ -28,3 +28,20 @@
   background: #3b5998;
 }
 
+// Header
+
+.header {
+  height: 350px;
+  overflow: hidden;
+}
+
+.header .black {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.3;
+}
+
+.header > img {
+  width: 100vw;
+}
