@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @deal = Deal.new
   end
 
   def new

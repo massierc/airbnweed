@@ -1,0 +1,36 @@
+<h1><%= @user.name %></h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <h2>Products</h2>
+      <ul>
+        <% @user.items.each do |item| %>
+          <li><%= item.name %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <%= simple_form_for([@user, @deal]) do |f| %>
+        <%= f.input :item, collection: @user.items, prompt: "choose a product", id: "item" %>
+        <input type="number" id="quantity", val="0">
+        <%= f.input :total_price, as: :hidden, id: "total_price", class: "hidden" %>
+        <p>Total price: <span id="total-price-text"></span>€</p>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= content_for(:scripts) do %>
+  <script>
+    $('#deal_item, #quantity').change(function() {
+      <% @user.items.each do |item| %>
+        if ( $('#deal_item option:selected').val() === "<%= item.id %>") {
+          $('#deal_total_price').val(<%= item.price %> * parseInt($("#quantity").val()))
+          $("#total-price-text").text(<%= item.price %> * parseInt($("#quantity").val()))
+        };
+      <% end %>
+    });
+  </script>
+<% end %>
