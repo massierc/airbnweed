@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
+    @dealers = User.select { |user| user.items != [] }
   end
 
   def show
