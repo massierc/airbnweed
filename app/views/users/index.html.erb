@@ -1,6 +1,24 @@
-<div class="container">
+
+<div class="container text-center">
+
+<h1>Filter by drugs</h1>
+<% DRUGS.each do |drug| %>
+  <form action="/users">
+    <input type="hidden" name="drug" value="<%= drug %>">
+    <input type="submit" value="<%= drug.capitalize %>">
+  </form>
+<% end %>
+
+
+<form action="/users">
+  <input type="text" name="city">
+  <input type="submit" value="Filter by city">
+</form>
+
+
+<h1>Our dealers</h1>
   <div class="row">
-    <% @dealers.each do |dealer| %>
+    <% @filtered_dealers.each do |dealer| %>
       <div class="col-xs-12 col-sm-4">
         <div class="card">
           <div class="card-image">
@@ -24,8 +42,4 @@
     <% end %>
   </div>
 </div>
-
-
-
-
 
