@@ -1,2 +1,31 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <% @dealers.each do |dealer| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card">
+          <div class="card-image">
+            <%= image_tag dealer.photo %>
+            <span class="card-title">
+              <%= dealer.first_name + " " + dealer.last_name %>
+            </span>
+          </div>
+          <div class="card-content">
+            <%= truncate(dealer.description) %>
+            </br>
+            <%= dealer.working_hours %>
+            </br>
+            <%= dealer.address + ", " + dealer.zipcode + " " + dealer.city %>
+          </div>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
