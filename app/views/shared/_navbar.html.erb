@@ -19,10 +19,10 @@
     <% if user_signed_in? %>
 
       <!-- Notification -->
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
+      <%= link_to user_deals_path(current_user), class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
           <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-blue"><%= current_user.deals.count(conditions: "status = Pending") %></div>
+          <div class="badge badge-blue"><%= current_user.deals.where(status: "Pending").count %></div>
         </div>
       <% end %>
 
