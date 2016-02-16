@@ -22,7 +22,7 @@
       <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
           <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-blue">3</div>
+          <div class="badge badge-blue"><%= current_user.deals.count(conditions: "status = Pending") %></div>
         </div>
       <% end %>
 

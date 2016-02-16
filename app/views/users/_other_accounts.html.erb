@@ -43,7 +43,7 @@
     <div class="co-xs-12">
       <hr>
       <p><%= @user.description %></p>
-      <% unless @user.items == [] %>
+      <% unless @user.deals == [] %>
         <hr>
         <h2>Ratings</h2>
         <p><strong>Average score: <%= average_score(@user) %>/5</strong></p>
