@@ -20,6 +20,22 @@
       <% end %>
     </div>
   </div>
+  <div class="row">
+    <div class="co-xs-12">
+      <hr>
+      <p><%= @user.description %></p>
+      <hr>
+      <h2>Ratings</h2>
+      <p><strong>Average score: <%= average_score(@user) %>/5</strong></p>
+      <ul>
+        <% @user.deals.each do |deal| %>
+          <li>
+            <%= "*" * deal.rating %> by <%= deal.user.name %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <%= content_for(:scripts) do %>
