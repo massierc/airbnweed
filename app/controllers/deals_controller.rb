@@ -18,10 +18,11 @@ class DealsController < ApplicationController
   def create
     @deal = Deal.new(deal_params)
     @deal.item = Item.find(params[:deal][:item])
-    @deal.status = "pending"
+    @deal.status = "Pending"
     @deal.user = current_user
+    @deal.message = nil if @deal.message == ""
     @deal.save
-    redirect_to deal_path(current_user)
+    redirect_to user_deals_path(current_user)
   end
 
   def rate
@@ -33,6 +34,6 @@ class DealsController < ApplicationController
   private
 
   def deal_params
-    params.require(:deal).permit(:user, :total_price)
+    params.require(:deal).permit(:user, :total_price, :message)
   end
 end

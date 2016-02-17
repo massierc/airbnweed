@@ -4,4 +4,12 @@ module UsersHelper
       res << elided unless res.length == s.length
     end
   end
+
+  def average_score(user)
+    total = 0
+    user.deals.each do |deal|
+      total += deal.rating unless deal.rating.nil?
+    end
+    return total / (user.deals.length)
+  end
 end
