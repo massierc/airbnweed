@@ -1,6 +1,9 @@
 .product {
   display: flex;
   align-items: center;
+  padding: 20px;
+  border-radius: 3px;
+  transition: all 0.15s ease;
 }
 
 .card {
