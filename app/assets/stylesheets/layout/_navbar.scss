@@ -57,10 +57,10 @@
   padding: 0 20px;
   border-radius: 20em;
   line-height: 40px;
-  background-color: green;
-  color: white;
-  font-size: 14px;
-  border: 2px solid white;
+  background-color: white;
+  color: rgb(75, 193, 161);
+  border: 2px solid rgb(75, 193, 161);
+  font-size: 15px;
 }
 .navbar-wagon-button-home {
   margin-left: 10px;
@@ -75,8 +75,8 @@
 
 .navbar-wagon-button:hover {
   color: white;
-  background: green;
-  border-color: green;
+  background: $green;
+  border-color: $green;
 }
 
 /* Navbar search form */
