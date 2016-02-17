@@ -14,3 +14,27 @@
 @import "pages/index";
 @import "vendor/index";
 
+h1 {
+  font-size: 27px;
+  color: $gray;
+}
+
+h2 {
+  font-size: 24px;
+  color: $gray;
+}
+
+h3 {
+  font-size: 22px;
+  color: $gray-light;
+}
+
+p {
+  font-size: 14px;
+  color: $gray-light;
+}
+
+li {
+ font-size: 14px;
+ color: $gray-light;
+}
