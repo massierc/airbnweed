@@ -1,10 +1,9 @@
 .card {
   position: relative;
   margin: 0.5rem 0 1rem 0;
-  background-color: #FAFAFA;
+  background-color: #F9F9F9;
   transition: box-shadow .25s;
   border-radius: 2px;
-  border: 1px #C8C8C8;
   box-shadow: 1px 1px 2px #C8C8C8;
   height: 578px;
 }
@@ -37,10 +36,6 @@
 .card .card-content p {
   margin: 0;
   color: inherit;
-}
-.card .card-action {
-  border-top: 1px solid rgba(160,160,160,0.2);
-  padding: 20px;
 }
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
     color: #ffab40;

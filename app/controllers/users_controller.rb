@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   def index
-    @all_dealers = User.select { |user| user.items != [] }
-    @filtered_dealers = []
-    Item.where(name: "#{params[:drug]}").map(&:user_id).each { |user| @filtered_dealers << User.find(user) }
-    User.where(city: "#{params[:city]}").each { |user| @filtered_dealers << user }
+    drug = User.select { |dealer| Item.where(name: "#{params[:drug]}").map(&:user_id).include? dealer.id }
+    city = drug.select { |dealer| dealer.city == params[:city] }
+    @filtered_dealers = city.select do |dealer|
+      dealer.start_time < params[:time].to_i && dealer.end_time > params[:time].to_i
+    end
   end
 
   def show
@@ -34,5 +35,3 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :address, :zipcode, :city, :photo)
   end
 end
-
-
