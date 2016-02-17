@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @deal = Deal.new
+    @item = Item.new
   end
 
   def new
@@ -47,6 +48,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :address, :zipcode, :city, :photo)
+    params.require(:user).permit(:first_name, :last_name, :address, :zipcode, :city, :photo, :start_time, :end_time, :description)
   end
 end

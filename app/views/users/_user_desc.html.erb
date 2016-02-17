@@ -1,0 +1,12 @@
+<div class="user_desc">
+  <%= cl_image_tag(@user.photo.path, height: 200, width: 200, fill: :crop, style: "border-radius: 50%", class: "avatar-margin") unless @user.photo.nil? %>
+  <div>
+    <h1><%= @user.name %></h1>
+    <% unless @user.city == "" %>
+      <p>From <%= @user.city %>, <%= @user.zipcode %></p>
+    <% end %>
+    <% unless @user.start_time.nil? %>
+      <p>Available from <%= @user.start_time %>h to <%= @user.end_time %>h</p>
+    <% end %>
+  </div>
+</div>
