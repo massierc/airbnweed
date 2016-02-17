@@ -2,3 +2,19 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+.search-bar input {
+  margin: 0 -2px 0 0;
+}
+.search-bar select {
+  margin: 0 -2px 0 0;
+}
+.search-container {
+    background-color: #000;
+    background-color: rgba(0,0,0,0.6);
+    bottom: 40px;
+    left: 0;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    position: absolute;
+    right: 0;
+}
