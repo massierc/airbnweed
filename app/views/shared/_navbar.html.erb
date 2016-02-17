@@ -59,7 +59,9 @@
     <% end %>
 
     <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn #{@button_navbar_for_home ? @button_navbar_for_home : ''}" %>
+    <% if user_signed_in? %>
+      <%= link_to "Start dealing", user_path(current_user), class: "navbar-wagon-item navbar-wagon-button btn #{@button_navbar_for_home ? @button_navbar_for_home : ''}" %>
+      <% end %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
