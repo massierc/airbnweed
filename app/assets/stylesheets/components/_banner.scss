@@ -6,7 +6,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
+
 .banner h1 {
   font-size: 50px;
   font-weight: bold;
@@ -17,4 +19,17 @@
   font-weight: lighter;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 20px;
+}
+
+.banner-gradient{
+  background-color: linear-gradient(-225deg, rgba(0,101,168,0.2) 0%, rgba(0,36,61,0.4) 50%);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom:0;
+  z-index: 2;
+}
+.banner-content{
+  z-index: 3;
 }

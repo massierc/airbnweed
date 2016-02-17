@@ -1,7 +1,38 @@
-<div class="banner" style="background: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('weed.jpg');">
-  <div class="banner-content">
-    <h1>Get your weed </h1>
-    <p>when you want, where you want...</p>
-    <a class="btn btn-primary btn-lg">Search a drug</a>
+
+<div class= "text-center">
+  <div class="banner" style="background-image: url(<%= asset_path 'homepage.png' %>);">
+    <div class="banner-gradient"></div>
+    <div class="banner-content">
+      <h1>Find any drugs around the world</h1>
+       <%= link_to "Find a dealers for your needs!", users_path, class: "btn btn-primary btn-lg"%>
+    </div>
+  </div>
+</div>
+
+<div class="text-center padded features">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4">
+        <div class="card card-content">
+            <h2>Dealer name</h2>
+            <p>description quick</p>
+             <%#= image_tag "weed.jpg", class: "card-image"%>
+          </div>   <!-- insert <div class="card"> -->
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card card-content">
+            <h2>Dealer name</h2>
+            <p>description quick</p>
+             <%#= image_tag "weed.jpg", class: "card-image"%>
+        </div>   <!-- insert <div class="card"> -->
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card card-content">
+            <h2>Dealer name</h2>
+            <p>description quick</p>
+             <%#= image_tag "weed.jpg", class: "card-image"%>
+          </div>   <!-- insert <div class="card"> -->
+      </div>
+    </div>
   </div>
 </div>
