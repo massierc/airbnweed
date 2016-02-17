@@ -39,7 +39,7 @@
         <% if @user.items == [] %>
           <p>You have no drugs yet, start dealing with us today!</p>
         <% else %>
-          <ul>
+          <ul class="list-unstyled">
             <% @user.items.each do |item| %>
               <li><%= item.name %>: <%= item.price %>€ / dose</li>
             <% end %>
@@ -61,11 +61,11 @@
           <hr>
           <h2>Your ratings</h2>
           <p><strong>Average score: <%= average_score(@user) %>/5</strong></p>
-          <ul>
+          <ul class="list-unstyled">
             <% @user.deals.each do |deal| %>
               <% unless deal.rating.nil? %>
                 <li>
-                  <%= "*" * deal.rating %> by <%= deal.user.name %>
+                  <%= deal.rating == 0 ? 0 : "*" * deal.rating %> by <%= deal.user.name %>
                 </li>
               <% end %>
             <% end %>
