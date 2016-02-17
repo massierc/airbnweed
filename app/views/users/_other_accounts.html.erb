@@ -1,22 +1,13 @@
-<% unless @user.items == [] %>
-  <div class="header">
-    <% if @user.items.first.name == "weed" %>
-      <%= image_tag "weed.jpg" %>
-    <% elsif @user.items.first.name == "MDMA" %>
-      <%= image_tag "MDMA.jpg" %>
-    <% elsif @user.items.first.name == "cocaïne" %>
-      <%= image_tag "cocaïne.jpg" %>
-    <% end %>
+<%= render 'users/header' %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6"><%= render "users/user_desc" %></div>
+    <div class="col-xs-12 col-sm-6">
+
+    </div>
   </div>
-<% end %>
-
-<div class="text-center">
-  <%= cl_image_tag(@user.photo.path, height: 200, width: 200, fill: :crop, style: "border-radius: 50%") unless @user.photo.nil? %>
-  <h1><%= @user.name %></h1>
-  <p>From <%= @user.city %>, <%= @user.zipcode %></p>
-  <p>Available from <%= @user.start_time %>h to <%= @user.end_time %>h</p>
 </div>
-
 
 <div class="container">
   <div class="row">

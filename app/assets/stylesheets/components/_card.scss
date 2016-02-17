@@ -1,6 +1,35 @@
 .product {
   display: flex;
   align-items: center;
+}
+
+.card {
+  position: relative;
+  margin: 0.5rem 0 1rem 0;
+  background-color: #F9F9F9;
+  border-radius: 2px;
+  // box-shadow: 1px 1px 1px #C8C8C8;
+  height: 578px;
+}
+
+.card .card-image {
+  position: relative;
+}
+.card .card-image img {
+  display: block;
+  border-radius: 2px 2px 0 0;
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+.card .card-image .card-title {
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   padding: 20px;
   border-radius: 3px;
   transition: all 0.15s ease;

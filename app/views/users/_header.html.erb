@@ -1,0 +1,23 @@
+<% unless @user.items == [] %>
+  <div class="header">
+    <% if @user.items.first.name == "Weed" %>
+      <%= image_tag "weed.jpg" %>
+    <% elsif @user.items.first.name == "MDMA" || @user.items.first.name == "Ecstasy" %>
+      <%= image_tag "MDMA.jpg" %>
+    <% elsif @user.items.first.name == "Cocaine" %>
+      <%= image_tag "cocaïne.jpg" %>
+    <% elsif @user.items.first.name == "Heroin" %>
+      <%= image_tag "heroin.jpg" %>
+    <% elsif @user.items.first.name == "Ketamine" %>
+      <%= image_tag "ketamine.jpg" %>
+    <% elsif @user.items.first.name == "LSD" %>
+      <%= image_tag "lsd.jpg" %>
+    <% elsif @user.items.first.name == "Steroids" %>
+      <%= image_tag "steroids.jpg" %>
+    <% elsif @user.items.first.name == "Crack" %>
+      <%= image_tag "crack.jpg" %>
+    <% elsif @user.items.first.name == "BBQ Sauce" %>
+      <%= image_tag "bbqsauce.jpg" %>
+    <% end %>
+  </div>
+<% end %>
