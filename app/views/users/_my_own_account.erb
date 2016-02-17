@@ -13,78 +13,66 @@
           <%= f.input :start_time, label: "When does your shift start?" %>
           <%= f.input :end_time, label: "When does your shift end?" %>
           <%= f.input :description, label: "Tell us a bit about yourself (will appear on your public page)" %>
-          <%= f.submit %>
+          <%= f.button :submit, class: "btn btn-primary form-button" %>
         <% end %>
       <% else %>
         <h2 class="text-center">Deal a new drug</h2>
         <%= simple_form_for([@user, @item]) do |f| %>
           <%= f.input :name, collection: DRUGS, prompt: "Pick a product", id: "item" %>
           <%= f.input :price, label: "Unit Price" %>
-          <%= f.submit %>
+          <%= f.button :submit, class: "btn btn-primary form-button" %>
         <% end %>
       <% end %>
     </div>
   </div>
 </div>
-<hr style="margin-top: 0">
 
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6">
-      <h2>Your products</h2>
-      <% if @user.items == [] %>
-        <p>You have no drugs yet, start dealing with us today!</p>
-      <% else %>
-        <ul>
-          <% @user.items.each do |item| %>
-            <li><%= item.name %>: <%= item.price %>€ / dose</li>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
-    <div class="col-xs-12 col-sm-6">
-      <% if @user.start_time.nil? %>
-        <h2 class="text-center">Start dealing</h2>
-        <%= simple_form_for([@user]) do |f| %>
-          <%= f.input :address %>
-          <%= f.input :zipcode %>
-          <%= f.input :city, collection: CITIES %>
-          <%= f.input :start_time, label: "When does your shift start?" %>
-          <%= f.input :end_time, label: "When does your shift end?" %>
-          <%= f.input :description, label: "Tell us a bit about yourself (will appear on your public page)" %>
-          <%= f.submit %>
-        <% end %>
-      <% else %>
-        <h2 class="text-center">Deal a new drug</h2>
-        <%= simple_form_for([@user, @item]) do |f| %>
-          <%= f.input :name, collection: DRUGS, prompt: "Pick a product", id: "item" %>
-          <%= f.input :price, label: "Unit Price" %>
-          <%= f.submit %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-
-  <%= render "deals/list" unless @user.orders == [] && @user.deals == [] %>
-
-  <div class="row">
-    <div class="co-xs-12">
-      <hr>
-      <p><%= @user.description %></p>
-      <% unless @user.deals == [] %>
-        <hr>
-        <h2>Your ratings</h2>
-        <p><strong>Average score: <%= average_score(@user) %>/5</strong></p>
-        <ul>
-          <% @user.deals.each do |deal| %>
-            <% unless deal.rating.nil? %>
-              <li>
-                <%= "*" * deal.rating %> by <%= deal.user.name %>
-              </li>
+<div class="grey">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <h2>About <%= @user.first_name %></h2>
+        <p><%= @user.description %></p>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <h2>Your products</h2>
+        <% if @user.items == [] %>
+          <p>You have no drugs yet, start dealing with us today!</p>
+        <% else %>
+          <ul>
+            <% @user.items.each do |item| %>
+              <li><%= item.name %>: <%= item.price %>€ / dose</li>
             <% end %>
-          <% end %>
-        </ul>
-      <% end %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+
+    <hr class="dark-hr">
+
+    <%= render "deals/list" unless @user.orders == [] && @user.deals == [] %>
+
+    <hr class="dark-hr">
+
+    <div class="row">
+      <div class="co-xs-12">
+        <hr>
+        <% unless @user.deals == [] %>
+          <hr>
+          <h2>Your ratings</h2>
+          <p><strong>Average score: <%= average_score(@user) %>/5</strong></p>
+          <ul>
+            <% @user.deals.each do |deal| %>
+              <% unless deal.rating.nil? %>
+                <li>
+                  <%= "*" * deal.rating %> by <%= deal.user.name %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
+

@@ -6,11 +6,22 @@
 
 .padded-form {
   padding: 1em 2em;
-  border: 2px solid rgb(200,200,200)
+  border: 1px solid rgb(200,200,200)
 }
 
 .user_desc {
   display: flex;
   align-items: center;
   margin-top: 40px;
+}
+
+.grey {
+  width: 100%;
+  background-color: rgb(240,240,240);
+  padding: 20px;
+  border-top: 1px solid rgb(200,200,200)
+}
+
+.form-button {
+  width: 100%;
 }
