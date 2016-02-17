@@ -4,35 +4,27 @@
     <div class="banner-gradient"></div>
     <div class="banner-content">
       <h1>Find any drugs around the world</h1>
-       <%= link_to "Find a dealers for your needs!", users_path, class: "btn btn-primary btn-lg"%>
-    </div>
-  </div>
-</div>
+      <div class="search-container">
 
-<div class="text-center padded features">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-4">
-        <div class="card card-content">
-            <h2>Dealer name</h2>
-            <p>description quick</p>
-             <%#= image_tag "weed.jpg", class: "card-image"%>
-          </div>   <!-- insert <div class="card"> -->
-      </div>
-      <div class="col-xs-12 col-sm-4">
-        <div class="card card-content">
-            <h2>Dealer name</h2>
-            <p>description quick</p>
-             <%#= image_tag "weed.jpg", class: "card-image"%>
-        </div>   <!-- insert <div class="card"> -->
-      </div>
-      <div class="col-xs-12 col-sm-4">
-        <div class="card card-content">
-            <h2>Dealer name</h2>
-            <p>description quick</p>
-             <%#= image_tag "weed.jpg", class: "card-image"%>
-          </div>   <!-- insert <div class="card"> -->
-      </div>
+
+      <form action="#" class="form-inline search-bar">
+          <input type="text" class="form-control" placeholder="marijuana">
+          <select name="city" class="form-control">
+              <option value="" selected>Select city</option>
+              <% CITIES.each do |city| %>
+                <option><%= city %></option>
+              <% end %>
+          </select>
+          <select name="time" class="form-control">
+              <option value="" selected>Select time</option>
+              <% (1..23).each do |i| %>
+                <option value="<%= i %>"><%= i %>h00</option>
+              <% end %>
+          </select>
+           <%= link_to "Find your dealer!", users_path, class: "btn btn-success"%>
+
+        </form>
+       </div>
     </div>
   </div>
 </div>
