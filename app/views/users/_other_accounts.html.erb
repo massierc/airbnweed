@@ -1,14 +1,4 @@
-<% unless @user.items == [] %>
-  <div class="header">
-    <% if @user.items.first.name == "weed" %>
-      <%= image_tag "weed.jpg" %>
-    <% elsif @user.items.first.name == "MDMA" %>
-      <%= image_tag "MDMA.jpg" %>
-    <% elsif @user.items.first.name == "cocaïne" %>
-      <%= image_tag "cocaïne.jpg" %>
-    <% end %>
-  </div>
-<% end %>
+<%= render 'users/header' %>
 
 <div class="text-center">
   <%= cl_image_tag(@user.photo.path, height: 200, width: 200, fill: :crop, style: "border-radius: 50%") unless @user.photo.nil? %>
