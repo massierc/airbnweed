@@ -20,9 +20,17 @@
   width: 100%;
   background-color: rgb(240,240,240);
   padding: 20px;
-  border-top: 1px solid rgb(200,200,200)
+  border-top: 1px solid rgb(200,200,200);
+}
+
+.grey h2 {
+  color: #0FC1A1;
 }
 
 .form-button {
   width: 100%;
+}
+
+.order-listing {
+  padding-left: 20px;
 }

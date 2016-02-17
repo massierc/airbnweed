@@ -1,6 +1,6 @@
 <% if @user != current_user %>
   <%= render "shared/unauthorized" %>
 <% else %>
-  <h1>Your orders and deals</h1>
+  <h1 class="text-center">Your orders and deals</h1>
   <%= render "deals/list" %>
 <% end %>
