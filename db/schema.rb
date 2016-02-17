@@ -80,6 +80,11 @@ ActiveRecord::Schema.define(version: 20160216174802) do
     t.text     "description"
     t.integer  "start_time"
     t.integer  "end_time"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "picture"
+    t.string   "token"
+    t.datetime "token_expiry"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

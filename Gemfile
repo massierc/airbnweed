@@ -15,6 +15,7 @@ gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
 gem 'omniauth-facebook'
 
+
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'

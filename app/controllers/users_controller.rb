@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show, :index]
   def index
     drug = User.select { |dealer| Item.where(name: "#{params[:drug]}").map(&:user_id).include? dealer.id }
     city = drug.select { |dealer| dealer.city == params[:city] }
