@@ -1,1 +1,16 @@
 @import "home";
+
+.avatar-margin {
+  margin: 0 30px;
+}
+
+.padded-form {
+  padding: 1em 2em;
+  border: 2px solid rgb(200,200,200)
+}
+
+.user_desc {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+}
