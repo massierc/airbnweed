@@ -1,10 +1,24 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
   def index
-    drug = User.select { |dealer| Item.where(name: "#{params[:drug]}").map(&:user_id).include? dealer.id }
-    city = drug.select { |dealer| dealer.city == params[:city] }
-    @filtered_dealers = city.select do |dealer|
-      dealer.start_time < params[:time].to_i && dealer.end_time > params[:time].to_i
+    if params[:drug].nil?
+      drug = User.select { |dealer| dealer.items.length > 0 }
+    else
+      drug = User.select { |dealer| Item.where(name: "#{params[:drug]}").map(&:user_id).include? dealer.id }
+    end
+
+    if params[:city] == ""
+      city = drug
+    else
+      city = drug.select { |dealer| dealer.city == params[:city] }
+    end
+
+    if params[:time] == ""
+      @filtered_dealers = city
+    else
+      @filtered_dealers = city.select do |dealer|
+        dealer.start_time < params[:time].to_i && dealer.end_time > params[:time].to_i
+      end
     end
   end
 
