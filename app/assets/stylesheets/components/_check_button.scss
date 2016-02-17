@@ -1,0 +1,38 @@
+#check-button {
+  color: #848484;
+  height: 50px;
+  width: 118px;
+  margin: 2px auto;
+  text-align: center;
+  border: 0;
+  transition: all 0.3s ease 0s;
+  border-radius: 30px;
+  display: flex;
+  overflow: hidden;
+  padding: 0;
+  label {
+    width: 118px;
+    height: 0;
+    input {
+      margin-right: 100px;
+      position: absolute;
+      top: -20px;
+    }
+    span {
+      width: 118px;
+      height: 50px;
+      padding-top: 12px;
+      text-align: center;
+      display: inline-block;
+    }
+  }
+}
+#check-button:hover {
+    background: #848484;
+    color: #F7F7F7;
+}
+#check-button input:checked + span {
+    background: #848484;
+    color: #F7F7F7;
+}
+

@@ -8,23 +8,25 @@
 
 
 100.times do
-  random_photo = "http://api.randomuser.me/portraits/#{rand > 0.5 ? "men" : "women"}/#{(rand * (96 - 1) + 1).round}.jpg"
+  start_time = (9..15).to_a.sample
+  end_time = start_time + (1..8).to_a.sample
   user = User.new(
     email: Faker::Internet.email,
     password: "dreamteam",
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    photo: random_photo,
     address: Faker::Address.street_address,
     zipcode: Faker::Address.zip_code,
-    city: Faker::Address.city,
+    city: CITIES[rand(CITIES.length)],
+    start_time: start_time,
+    end_time: end_time,
     description: Faker::Hipster.paragraph)
   user.save
 end
 
 150.times do
   item = Item.new(
-    name: DRUGS[rand(DRUGS.length - 1)],
+    name: DRUGS[rand(DRUGS.length)],
     in_stock: rand > 0.8 ? true : false,
     price: (rand * (300 - 15) + 15).round(2),
     user: User.all.sample)
