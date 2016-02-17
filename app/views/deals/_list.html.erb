@@ -31,8 +31,8 @@
                 <% unless deal.message.nil? %>
                   <br>>> Message:<br>>> <%= deal.message %>
                 <% end %>
-                <br><%= link_to "Accept deal", "deals/#{deal.id}/accept", class: "btn btn-primary btn-sm" %>
-                <%= link_to "Reject deal", "deals/#{deal.id}/cancel", class: "btn btn-danger btn-sm" %>
+                <br><%= link_to "Accept deal", "/users/#{@user.id}/deals/#{deal.id}/accept", class: "btn btn-primary btn-sm" %>
+                <%= link_to "Reject deal", "/users/#{@user.id}/deals/#{deal.id}/cancel", class: "btn btn-danger btn-sm" %>
               </li>
             <% end %>
           <% end %>
