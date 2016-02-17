@@ -1,3 +1,8 @@
+.product {
+  display: flex;
+  align-items: center;
+}
+
 .card {
   position: relative;
   margin: 0.5rem 0 1rem 0;
@@ -6,6 +11,7 @@
   // box-shadow: 1px 1px 1px #C8C8C8;
   height: 578px;
 }
+
 .card .card-image {
   position: relative;
 }
@@ -25,20 +31,120 @@
   bottom: 0;
   left: 0;
   padding: 20px;
-  font-size: 24px;
-  font-weight: 300;
+  border-radius: 3px;
+  transition: all 0.15s ease;
 }
-.card .card-content {
-  padding: 20px;
-  border-radius: 0 0 2px 2px;
+
+/* Body design */
+.product-body {
+  flex: 1 1 auto;
 }
-.card .card-content p {
-  margin: 0;
-  color: inherit;
+.product-body h3 {
+  font-weight: bold;
+  font-size: 23px;
+  margin-top: 0;
 }
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
-    color: #ffab40;
-    margin-right: 20px;
-    transition: color .3s ease;
-    text-transform: uppercase;
+.product-body p {
+  font-weight: lighter;
+  color: #999999;
+  margin-bottom: 0;
 }
+
+/* Product hours */
+.product-hours {
+  flex: 1 1 auto;
+}
+.product-hours p {
+  font-weight: lighter;
+  color: #999999;
+  margin-bottom: 0;
+}
+
+/* Product drugs */
+.product-drugs {
+  flex: 1 1 auto;
+}
+.product-drugs-list {
+  flex: 1 1 auto;
+}
+.product-drug {
+  font-weight: lighter;
+  padding: 5px 15px !important;
+  color: #878787;
+  border-radius: 30px;
+  transition: all 0.15s ease;
+}
+.product-drug:hover {
+  background: #878787;
+  color: #FFFFFF;
+  border-radius: 30px;
+}
+
+/* Product image */
+.product-image {
+  border-radius: 10px;
+  margin-right: 20px;
+  width: auto;
+  height: auto;
+  max-width: 175px;
+  max-height: 100px;
+}
+
+/* Upvote design */
+.product-upvote {
+  padding-right: 20px;
+  text-align: center;
+  transition: all 0.15s ease;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 20px;
+}
+.product-count {
+  margin: 2px 0 0;
+}
+.product-arrow {
+  transition: all 0.15s ease;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid transparent;
+  border-bottom: 9px solid black;
+  border-radius: 2px;
+  margin: auto;
+}
+
+/* Controls design */
+.product-controls {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0px;
+}
+.product-controls a {
+  padding: 0 20px;
+  font-size: 17px;
+  color: #E6E6E6;
+}
+.product-controls a:hover {
+  color: #D3473C !important
+}
+.product-controls-hidden a {
+  color: transparent;
+  font-size: 15px;
+  transition: all 0.15s ease;
+  border-color: transparent;
+}
+
+/* Hover effects */
+.product:hover {
+  background: #f7f7fa;
+  cursor: pointer;
+}
+.product-upvote:hover {
+  color: #5898f1;
+  cursor: pointer;
+}
+.product:hover .product-upvote { transform: scale(1.2) }
+.product:hover .product-controls-hidden a { color: #E6E6E6 }
+.product-upvote:hover .product-arrow { border-bottom: 9px solid #5898f1 }
