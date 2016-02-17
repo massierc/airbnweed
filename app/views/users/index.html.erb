@@ -70,7 +70,7 @@
     <% if dealer.photo.nil? %>
       <img src="<%= random_photo %>" alt="<%= dealer.name %>" class="product-image">
     <% else %>
-    <%= image_tag dealer.photo, class: "product-image" %>
+      <%= cl_image_tag dealer.photo.path, class: "product-image" %>
     <% end %>
 
     <div class='product-body'>
