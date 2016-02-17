@@ -35,7 +35,3 @@ class UsersController < ApplicationController
     params.require(:user).permit(:first_name, :last_name, :address, :zipcode, :city, :photo)
   end
 end
-
-drug = User.select { |dealer| Item.where(name: "Weed").map(&:user_id).include? dealer.id }
-city = drug.select { |dealer| dealer.city == "Paris" }
-time = city.select { |dealer| dealer.start_time < 11 && dealer.end_time > 11 }
