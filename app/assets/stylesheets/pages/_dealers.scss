@@ -1,5 +1,6 @@
 .src-filters {
-  background: #f7f7fa;
+  background: #EBEBEB;
+  box-shadow: 1px 1px 2px #D3D3D3
 }
 .src-filter-wrapper {
   margin: 0 20px;
@@ -7,4 +8,20 @@
   text-align: center;
   display: flex;
   align-items: center;
+  label {
+    margin-right: 15px;
+  }
+}
+.src-filter-wrapper:last-child {
+  border-top: 2px solid #DFDFDF;
+}
+#fixed-map {
+  position: fixed;
+  width: 30%;
+  right: 0;
+  top: 81px;
+  bottom: 0;
+}
+#page-content {
+  margin-right: 30%;
 }
