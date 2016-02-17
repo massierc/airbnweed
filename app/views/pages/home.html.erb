@@ -7,8 +7,8 @@
       <div class="search-container">
 
 
-      <form action="#" class="form-inline search-bar">
-          <input type="text" class="form-control" placeholder="marijuana">
+      <form action="/users" class="form-inline search-bar">
+          <input name="drug" type="text" class="form-control" placeholder="marijuana">
           <select name="city" class="form-control">
               <option value="" selected>Select city</option>
               <% CITIES.each do |city| %>
@@ -21,7 +21,7 @@
                 <option value="<%= i %>"><%= i %>h00</option>
               <% end %>
           </select>
-           <%= link_to "Find your dealer!", users_path, class: "btn btn-success"%>
+           <input type="submit" class="btn btn-success">
 
         </form>
        </div>
