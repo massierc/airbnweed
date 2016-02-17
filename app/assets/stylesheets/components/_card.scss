@@ -4,6 +4,7 @@
   padding: 20px;
   border-radius: 3px;
   transition: all 0.15s ease;
+  font-size: 14;
 }
 
 .card {
@@ -40,12 +41,13 @@
 
 /* Body design */
 .product-body {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
 }
 .product-body h3 {
   font-weight: bold;
-  font-size: 23px;
+  font-size: 18px;
   margin-top: 0;
+  color: #333333 !important;
 }
 .product-body p {
   font-weight: lighter;
@@ -53,12 +55,9 @@
   margin-bottom: 0;
 }
 
-/* Product hours */
-.product-hours {
-  flex: 1 1 auto;
-}
-.product-hours p {
+.product-body span {
   font-weight: lighter;
+  font-size: 14px;
   color: #999999;
   margin-bottom: 0;
 }
@@ -68,29 +67,33 @@
   flex: 1 1 auto;
 }
 .product-drugs-list {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
 }
 .product-drug {
+  font-size: 10px;
   font-weight: lighter;
-  padding: 5px 15px !important;
-  color: #878787;
+  padding: 2px 10px !important;
   border-radius: 30px;
   transition: all 0.15s ease;
-}
-.product-drug:hover {
   background: #878787;
   color: #FFFFFF;
   border-radius: 30px;
+  margin: 3px 1px;
+}
+.product-drug:first-child {
+  margin-left: 30px;
+}
+.product-drug:hover {
+
 }
 
 /* Product image */
 .product-image {
-  border-radius: 10px;
+  flex: 0 0 auto;
   margin-right: 20px;
-  width: auto;
-  height: auto;
-  max-width: 175px;
-  max-height: 100px;
+  width: 90px;
+  border-radius: 50%;
+  background-color: linear-gradient(-225deg, rgba(0,101,168,0.2) 0%, rgba(0,36,61,0.4) 50%);
 }
 
 /* Upvote design */
@@ -101,6 +104,7 @@
   font-weight: bold;
   font-size: 13px;
   line-height: 20px;
+  color: $green !important;
 }
 .product-count {
   margin: 2px 0 0;
@@ -123,26 +127,23 @@
   align-items: center;
   text-align: center;
   margin: 0px;
-}
-.product-controls a {
   padding: 0 20px;
   font-size: 17px;
   color: #E6E6E6;
+  text-decoration: none;
 }
-.product-controls a:hover {
-  color: #D3473C !important
-}
-.product-controls-hidden a {
-  color: transparent;
-  font-size: 15px;
-  transition: all 0.15s ease;
-  border-color: transparent;
+.product-controls:hover {
+  color: #FFCC66 !important;
+  text-decoration: none;
 }
 
 /* Hover effects */
 .product:hover {
   background: #f7f7fa;
   cursor: pointer;
+}
+a:hover {
+  text-decoration: none;
 }
 .product-upvote:hover {
   color: #5898f1;
