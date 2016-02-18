@@ -11,8 +11,8 @@
             <%= f.input :address %>
             <%= f.input :zipcode %>
             <%= f.input :city, collection: CITIES %>
-            <%= f.input :start_time, label: "When does your shift start?" %>
-            <%= f.input :end_time, label: "When does your shift end?" %>
+            <%= f.input :start_time, label: "When does your shift start?", input_html: { min: "00", max: "24" } %>
+            <%= f.input :end_time, label: "When does your shift end?", input_html: { min: "00", max: "24" } %>
             <%= f.input :description, label: "Tell us a bit about yourself (will appear on your public page)" %>
             <%= f.button :submit, class: "btn btn-primary form-button" %>
           <% end %>
@@ -30,7 +30,7 @@
   </div>
 </div>
 
-<div class="grey" style="margin-top: 10px;">
+<div class="grey" style="margin-top: 10px; <%= "height: 550px" if @user.items == [] && @user.orders == [] %>">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 text-center">
@@ -88,4 +88,3 @@
     </div>
   </div>
 </div>
-
