@@ -22,7 +22,7 @@
         <h2 class="text-center">Deal a new drug</h2>
         <%= simple_form_for([@user, @item]) do |f| %>
           <%= f.input :name, collection: DRUGS, prompt: "Pick a product", id: "item" %>
-          <%= f.input :price, label: "Unit Price" %>
+          <%= f.input :price, label: "Price per gram" %>
           <%= f.button :submit, class: "btn btn-primary form-button" %>
         <% end %>
       <% end %>

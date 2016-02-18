@@ -10,7 +10,7 @@
       <%= simple_form_for([@user, @deal]) do |f| %>
         <%= f.input :item, collection: @user.items, prompt: "choose a product", id: "item" %>
         <p id="out_of_stock"><strong></strong></p>
-        <label class="select optional control-label">Quantity</label><br>
+        <label class="select optional control-label">Quantity (in grams)</label><br>
         <input type="number" id="quantity", value="1">
         <%= f.input :total_price, as: :hidden, id: "total_price", class: "hidden" %>
         <p>Total price: <span id="total-price-text"></span>€</p>
