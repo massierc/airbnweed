@@ -7,22 +7,34 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
+  <form action="/users" class="navbar-wagon-search">
+      <button type="submit" class="navbar-wagon-search-btn">
+        <i class="fa fa-search"></i>
+      </button>
+      <input name="city" type="hidden" value="">
+      <input name="time" type="hidden" value="">
+      <input name="drug" type="text" class="navbar-wagon-search-input" placeholder="Weed">
+  </form>
     <!-- Different navigation if login or not -->
-    <% if user_signed_in? %>
 
+    <% if user_signed_in? %>
+      <%= link_to "Start dealing", user_path(current_user), class: "navbar-wagon-item navbar-wagon-button btn #{@button_navbar_for_home ? @button_navbar_for_home : ''}" %>
+    <% end %>
       <!-- Notification -->
+      <% if user_signed_in? %>
       <%= link_to user_deals_path(current_user), class: "navbar-wagon-item navbar-wagon-link" do %>
         <div class="badge-container">
           <i class="fa fa-envelope-o"></i>
           <div class="badge badge-blue"><%= current_user.deals.where(status: "Pending").count %></div>
         </div>
       <% end %>
-
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
           <% if current_user.photo.nil? %>
             <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% elsif current_user.picture?%>
+            <%= image_tag current_user.picture, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% else %>
             <%= cl_image_tag current_user.photo.path, width: 50, height: 50, crop: :fill, class: "avatar-large dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% end %>
@@ -54,9 +66,6 @@
     <% end %>
 
     <!-- Button (call-to-action) -->
-    <% if user_signed_in? %>
-      <%= link_to "Start dealing", user_path(current_user), class: "navbar-wagon-item navbar-wagon-button btn #{@button_navbar_for_home ? @button_navbar_for_home : ''}" %>
-      <% end %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
