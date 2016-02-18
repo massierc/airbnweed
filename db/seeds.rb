@@ -27,7 +27,7 @@ end
 150.times do
   item = Item.new(
     name: DRUGS[rand(DRUGS.length)],
-    in_stock: rand > 0.8 ? true : false,
+    in_stock: rand < 0.8 ? true : false,
     price: (rand * (300 - 15) + 15).round(2),
     user: User.all.sample)
   item.save

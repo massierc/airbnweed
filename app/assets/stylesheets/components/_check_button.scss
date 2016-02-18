@@ -2,7 +2,7 @@
   color: #848484;
   height: 50px;
   width: 118px;
-  margin: 2px auto;
+  margin: 2px 2px;
   text-align: center;
   border: 0;
   transition: all 0.3s ease 0s;
@@ -28,11 +28,11 @@
   }
 }
 #check-button:hover {
-    background: #848484;
+    background: #A5A5A5;
     color: #F7F7F7;
 }
 #check-button input:checked + span {
-    background: #848484;
+    background: #469B81;
     color: #F7F7F7;
 }
 
