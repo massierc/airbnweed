@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
   def index
-    if params[:drug].nil?
+    if params[:drug].nil? || params[:drug] == ""
       drug = User.select { |dealer| dealer.items.length > 0 }
     else
       drug = User.select { |dealer| dealer.items.length > 0 }
@@ -23,12 +23,18 @@ class UsersController < ApplicationController
         dealer.start_time < params[:time].to_i && dealer.end_time > params[:time].to_i
       end
     end
+
+    @markers = Gmaps4rails.build_markers(@filtered_dealers) do |dealer, marker|
+      marker.lat dealer.latitude
+      marker.lng dealer.longitude
+    end
   end
 
   def show
     @user = User.find(params[:id])
     @deal = Deal.new
     @item = Item.new
+    @user_coordinates = { lat: @user.latitude, lng: @user.longitude }
   end
 
   def new

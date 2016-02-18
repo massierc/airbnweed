@@ -1,4 +1,4 @@
-<div class="navbar-wagon <%= @navbar_class_for_home ? @navbar_class_for_home : '' %>">
+  <div class="navbar-wagon <%= @navbar_class_for_home ? @navbar_class_for_home : '' %>">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
     <%= image_tag "airbnweed.png", id: "logo" %>
@@ -13,7 +13,7 @@
       </button>
       <input name="city" type="hidden" value="">
       <input name="time" type="hidden" value="">
-      <input name="drug" type="text" class="navbar-wagon-search-input" placeholder="Weed">
+      <input name="drug[]" type="text" class="navbar-wagon-search-input" placeholder="Weed">
   </form>
     <!-- Different navigation if login or not -->
 
@@ -33,7 +33,7 @@
         <div class="dropdown">
           <% if current_user.photo.nil? %>
             <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <% elsif current_user.picture?%>
+          <% elsif current_user.picture != nil %>
             <%= image_tag current_user.picture, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
           <% else %>
             <%= cl_image_tag current_user.photo.path, width: 50, height: 50, crop: :fill, class: "avatar-large dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
