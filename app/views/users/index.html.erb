@@ -50,9 +50,9 @@
               <% end %>
               <% (1..23).each do |t| %>
                 <% if params[:city] == t %>
-                  <option selected><%= t %></option>
+                  <option value="<%= t %>" selected><%= t %>h00</option>
                 <% else %>
-                  <option><%= t %></option>
+                  <option value="<%= t %>"><%= t %>h00</option>
                 <% end %>
               <% end %>
             </select>
@@ -120,27 +120,19 @@
 </div>
 
 <div id="fixed-map">
-  <div id="map" style="width: 100%; height: 100%;"></div>
-
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
-  <script type="text/javascript">
-  var myLatlng = new google.maps.LatLng(35.669314, 139.751801);
-
-  var myOptions = {
-    zoom: 16,
-    center: myLatlng,
-    scrollwheel: false,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
-    styles: []
-  };
-
-  var map = new google.maps.Map(document.getElementById('map'), myOptions);
-  var marker = new google.maps.Marker({
-    position: myLatlng,
-    map: map,
-    title: "You are here!"
-  });
-  </script>
+  <div id="map" style="width: 100%; height: 600px;"></div>
 </div>
+
+<% content_for(:scripts) do %>
+  <%= javascript_tag do %>
+    $(document).on('ready', function() {
+      handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function(){
+        markers = handler.addMarkers(<%= raw @markers.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+    })
+  <% end %>
+<% end %>
 
