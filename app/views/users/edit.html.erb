@@ -6,12 +6,16 @@
         <div class="form-inputs">
           <%= f.input :first_name %>
           <%= f.input :last_name %>
-          <%= f.input :address %>
-          <%= f.input :city, collection: CITIES %>
-          <%= f.input :zipcode %>
-          <%= f.input :start_time %>
-          <%= f.input :end_time %>
-          <%= f.input :description %>
+          <label class="select optional control-label">Become a dealer</label>
+          <input type="checkbox" value="Become a dealer" id="toggle-dealer-fields">
+          <div class="hidden dealer-fields">
+            <%= f.input :address %>
+            <%= f.input :city, collection: CITIES %>
+            <%= f.input :zipcode %>
+            <%= f.input :start_time %>
+            <%= f.input :end_time %>
+            <%= f.input :description %>
+          </div>
           <%= f.input :photo, as: :attachinary %>
         </div>
 
@@ -22,3 +26,11 @@
     </div>
   </div>
 </div>
+
+<%= content_for(:scripts) do %>
+  <script>
+    $('#toggle-dealer-fields').change(function(){
+      $('.dealer-fields').toggleClass("hidden");
+    });
+  </script>
+<% end %>
