@@ -1,0 +1,21 @@
+.deal-buttons > a {
+  margin: 0 1px;
+}
+
+.deal-buttons {
+  margin: 0 20px;
+}
+
+.deal-background {
+  height: 50px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.deal-list > li {
+  position: relative;
+  z-index: 10;
+}
