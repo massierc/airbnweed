@@ -23,7 +23,7 @@
       </div>
 
       <div class="row src-filter-wrapper">
-        <div class="col-xs-4">
+        <div class="col-xs-5">
           <div class="form-group">
             <label>City</label>
             <select name="city" class="form-control">
@@ -41,25 +41,33 @@
           </div>
         </div>
 
-        <div class="col-xs-4">
+        <div class='col-xs-4'>
           <div class="form-group">
-            <label>Time</label>
-            <select name="time" class="form-control">
+            <div class='input-group date' id='datetimepicker3'>
+              <label>Time</label>
               <% if params[:time].nil? || params[:time] == "" %>
-                <option value="" selected>Select time</option>
+                <input name="time" id="time" type='text' class="form-control" />
+              <% else %>
+                <input name="time" id="time" type='text' class="form-control" value="<%= params[:time] %>" />
               <% end %>
-              <% (1..23).each do |t| %>
-                <% if params[:city] == t %>
-                  <option value="<%= t %>" selected><%= t %>h00</option>
-                <% else %>
-                  <option value="<%= t %>"><%= t %>h00</option>
-                <% end %>
-              <% end %>
-            </select>
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-time"></span>
+              </span>
+            </div>
           </div>
         </div>
+        <% content_for(:scripts) do %>
+          <%= javascript_tag do %>
+            $(function () {
+              $('#datetimepicker3').datetimepicker({
+                  format: 'LT'
+              });
+            });
+          <% end %>
+        <% end %>
 
-        <div class="col-xs-4">
+
+        <div class="col-xs-3">
           <div class="form-group">
             <div>
               <input type="submit" class="btn btn-primary" value="Find your dealer!">
@@ -71,8 +79,6 @@
 
     </form>
   </div>
-
-
 
   <% @filtered_dealers.each do |dealer| %>
     <% random_photo = "http://api.randomuser.me/portraits/#{rand > 0.5 ? "men" : "women"}/#{(rand * (96 - 1) + 1).round}.jpg" %>

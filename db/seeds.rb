@@ -6,8 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+require 'csv'
 
-100.times do
+csv_text = File.read('db/addresses.csv')
+csv_options = { col_sep: ';', quote_char: '"', headers: :first_row }
+csv = CSV.parse(csv_text, csv_options)
+
+csv.each do |row|
   start_time = (9..15).to_a.sample
   end_time = start_time + (1..8).to_a.sample
   user = User.new(
@@ -15,9 +20,9 @@
     password: "dreamteam",
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    address: Faker::Address.street_address,
-    zipcode: Faker::Address.zip_code,
-    city: CITIES[rand(CITIES.length)],
+    address: row['address'],
+    zipcode: row['zipcode'],
+    city: row['city'],
     start_time: start_time,
     end_time: end_time,
     description: Faker::Hipster.paragraph)

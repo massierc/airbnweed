@@ -10,6 +10,13 @@
   align-items: center;
   label {
     margin-right: 15px;
+    display: inline-block;
+    float: left;
+    margin-top: 6px;
+  }
+  #time {
+    float: right;
+    width: 70%;
   }
 }
 .src-filter-wrapper:last-child {

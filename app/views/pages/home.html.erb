@@ -15,13 +15,26 @@
                 <option><%= city %></option>
               <% end %>
           </select>
-          <select name="time" class="form-control">
-              <option value="" selected>Select time</option>
-              <% (1..23).each do |i| %>
-                <option value="<%= i %>"><%= i %>h00</option>
-              <% end %>
-          </select>
-           <input type="submit" class="btn btn-success">
+
+          <div class="form-group">
+            <div class='input-group date' id='datetimepicker3'>
+              <input name="time" id="time" type='text' class="form-control" />
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-time"></span>
+              </span>
+            </div>
+          </div>
+          <% content_for(:scripts) do %>
+            <%= javascript_tag do %>
+              $(function () {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
+                });
+              });
+            <% end %>
+          <% end %>
+
+          <input type="submit" class="btn btn-success">
 
         </form>
        </div>

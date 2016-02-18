@@ -28,11 +28,16 @@
   }
 }
 #check-button:hover {
-    background: #A5A5A5;
+    background: #BDBDBD;
     color: #F7F7F7;
+    transition: all 0.3s ease 0s;
 }
 #check-button input:checked + span {
     background: #469B81;
     color: #F7F7F7;
+    transition: all 0.3s ease 0s;
+}
+#check-button input + span {
+    transition: all 0.3s ease 0s;
 }
 
