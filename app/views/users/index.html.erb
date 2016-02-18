@@ -7,11 +7,12 @@
           <% DRUGS.each do |drug| %>
             <div class="col-xs-12" id="check-button">
               <label class="checkbox inline">
-                <% if params[:drug].nil? %>
-                  <%= check_box_tag 'drug[]', drug %>
-                <% elsif params[:drug].include?(drug) %>
+                <% if params[:drug].include?(drug) %>
                   <%= check_box_tag 'drug[]', drug, :checked => true %>
+                <% elsif params[:drug].nil? %>
+                  <%= check_box_tag 'drug[]', drug %>
                 <% else %>
+                  <%= check_box_tag 'drug[]', drug %>
                 <% end %>
                 <span><%= drug %></span>
                 </br>
