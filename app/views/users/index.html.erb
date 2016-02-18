@@ -7,7 +7,11 @@
           <% DRUGS.each do |drug| %>
             <div class="col-xs-12" id="check-button">
               <label class="checkbox inline">
-                <input type="checkbox" name="drug" value="<%= drug %>">
+                <% if params[:drug].include? drug %>
+                  <%= check_box_tag 'drug[]', drug, :checked => true %>
+                <% else %>
+                  <%= check_box_tag 'drug[]', drug %>
+                <% end %>
                 <span><%= drug %></span>
                 </br>
               </label>
@@ -21,9 +25,15 @@
           <div class="form-group">
             <label>City</label>
             <select name="city" class="form-control">
-              <option value="" selected>Select city</option>
+              <% if params[:city].nil? || params[:city] == "" %>
+                <option value="" selected>Select city</option>
+              <% end %>
               <% CITIES.each do |city| %>
-                <option><%= city %></option>
+                <% if params[:city] == city %>
+                  <option selected><%= city %></option>
+                <% else %>
+                  <option><%= city %></option>
+                <% end %>
               <% end %>
             </select>
           </div>
@@ -33,9 +43,15 @@
           <div class="form-group">
             <label>Time</label>
             <select name="time" class="form-control">
-              <option value="" selected>Select time</option>
-              <% (1..23).each do |i| %>
-                <option value="<%= i %>"><%= i %>h00</option>
+              <% if params[:time].nil? || params[:time] == "" %>
+                <option value="" selected>Select time</option>
+              <% end %>
+              <% (1..23).each do |t| %>
+                <% if params[:city] == t %>
+                  <option selected><%= t %></option>
+                <% else %>
+                  <option><%= t %></option>
+                <% end %>
               <% end %>
             </select>
           </div>
