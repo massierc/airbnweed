@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     if params[:drug].nil? || params[:drug] == ""
       drug = User.select { |dealer| dealer.items.length > 0 }
     else
+      params[:drug] = [params[:drug]] if params[:drug].class == String
       drug = User.select { |dealer| dealer.items.length > 0 }
       params[:drug].each do |drug_param|
         drug = drug.select { |dealer| Item.where(name: "#{drug_param}").map(&:user_id).include? dealer.id }
