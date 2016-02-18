@@ -8,8 +8,15 @@ class User < ActiveRecord::Base
   has_many :deals, through: :items
   has_many :orders, class_name:'Deal'
 
+  geocoded_by :city
+  after_validation :geocode, if: :address_changed?
+
   def name
     return self.first_name + " " + self.last_name unless first_name.nil? || last_name.nil?
+  end
+
+  def full_address
+    "#{address}, #{zipcode} #{city}"
   end
 
   def self.find_for_facebook_oauth(auth)

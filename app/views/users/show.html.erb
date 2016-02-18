@@ -3,3 +3,12 @@
 <% else %>
   <%= render "users/other_accounts" %>
 <% end %>
+
+<% content_for(:scripts) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var coord = <%= raw @user_coordinates.to_json %>;
+      alert('Flat coordinates are ' + coord.lat + ', ' + coord.lng);
+    });
+  <% end %>
+<% end %>
