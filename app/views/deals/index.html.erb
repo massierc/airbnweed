@@ -2,5 +2,5 @@
   <%= render "shared/unauthorized" %>
 <% else %>
   <h1 class="text-center">Your orders and deals</h1>
-  <%= render "deals/list" %>
+  <%= render "deals/list", deal: true %>
 <% end %>

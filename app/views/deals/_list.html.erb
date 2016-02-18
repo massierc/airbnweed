@@ -1,86 +1,117 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6">
-      <h2>Your orders</h2>
-      <hr class="dark-hr">
-      <div class="order-listing">
-        <h3>Pending</h3>
-        <ul class="padded-list">
-          <% @user.orders.each do |order| %>
-            <% if order.status == "Pending" %>
-              <li>
-                (<%= order.created_at.strftime("%d-%m-%y: %Hh%M") %>) <%= order.total_price %>€ | <%= order.item.name.upcase %> <br>
-                from <%= order.item.user.first_name + " " + order.item.user.last_name %>  | status: <%= order.status %>
-              </li>
+<div class="tabs">
+  <a class="tab text-center <%= "active" unless deal %>" data-target="#orders">
+    <h2 class="tab-title">Your Orders</h3>
+  </a>
+  <a class="tab text-center <%= "active" if deal %>" data-target="#deals">
+    <h2 class="tab-title">Your Deals</h3>
+  </a>
+</div>
+
+<div class="tab-content <%= "hidden" if deal %>" id= "orders">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <div class="order-listing">
+          <h3>Pending</h3>
+          <ul class="padded-list">
+            <% @user.orders.each do |order| %>
+              <% if order.status == "Pending" %>
+                <li>
+                  (<%= order.created_at.strftime("%d-%m-%y: %Hh%M") %>) <%= order.total_price %>€ | <%= order.item.name.upcase %> <br>
+                  from <%= order.item.user.first_name + " " + order.item.user.last_name %>  | status: <%= order.status %>
+                </li>
+              <% end %>
             <% end %>
-          <% end %>
-        </ul>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="col-xs-12 col-sm-6">
-      <h2>Your deals</h2>
-      <hr class="dark-hr">
-      <div class="order-listing">
-        <h3>Pending</h3>
-        <ul class:"padded-list">
-          <% @user.deals.each do |deal| %>
-            <% if deal.status == "Pending" %>
-              <li>
-                (<%= deal.created_at.strftime("%d-%m-%y: %Hh%M") %>) <%= deal.total_price %>€ | <%= deal.item.name.upcase %> <br>
-                from <%= deal.item.user.first_name + " " + deal.item.user.last_name %>  | status: <%= deal.status %>
-                <% unless deal.message.nil? %>
-                  <br>>> Message:<br>>> <%= deal.message %>
-                <% end %>
-                <br><%= link_to "Accept deal", "/users/#{@user.id}/deals/#{deal.id}/accept", class: "btn btn-primary btn-sm" %>
-                <%= link_to "Reject deal", "/users/#{@user.id}/deals/#{deal.id}/cancel", class: "btn btn-danger btn-sm" %>
-              </li>
+      <div class="col-xs-12 col-md-6">
+        <div class="order-listing">
+          <h3>Other</h3>
+          <ul class="padded-list">
+            <% @user.orders.each do |order| %>
+              <% unless order.status == "Pending" %>
+                <li>
+                  (<%= order.created_at.strftime("%d-%m-%y: %Hh%M") %>) <%= order.total_price %>€ | <%= order.item.name.upcase %> <br>
+                  from <%= order.item.user.first_name + " " + order.item.user.last_name %>  | status: <%= order.status %>
+                  <% if order.rating.nil? %>
+                    <br>rate this deal:
+                    <%= link_to "1", rate_path(@user.id, order.id, rating: 1) %>
+                    <%= link_to "2", rate_path(@user.id, order.id, rating: 2) %>
+                    <%= link_to "3", rate_path(@user.id, order.id, rating: 3) %>
+                    <%= link_to "4", rate_path(@user.id, order.id, rating: 4) %>
+                    <%= link_to "5", rate_path(@user.id, order.id, rating: 5) %>
+                  <% else %>
+                  <br>you rated this: <%= order.rating %>
+                  <% end %>
+                </li>
+              <% end %>
             <% end %>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-    <hr class="dark-hr">
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-6">
-      <div class="order-listing">
-        <h3>Other</h3>
-        <ul class="padded-list">
-          <% @user.orders.each do |order| %>
-            <% unless order.status == "Pending" %>
-              <li>
-                (<%= order.created_at.strftime("%d-%m-%y: %Hh%M") %>) <%= order.total_price %>€ | <%= order.item.name.upcase %> <br>
-                from <%= order.item.user.first_name + " " + order.item.user.last_name %>  | status: <%= order.status %>
-                <% if order.rating.nil? %>
-                  <br>rate this deal:
-                  <%= link_to "1", rate_path(@user.id, order.id, rating: 1) %>
-                  <%= link_to "2", rate_path(@user.id, order.id, rating: 2) %>
-                  <%= link_to "3", rate_path(@user.id, order.id, rating: 3) %>
-                  <%= link_to "4", rate_path(@user.id, order.id, rating: 4) %>
-                  <%= link_to "5", rate_path(@user.id, order.id, rating: 5) %>
-                <% else %>
-                <br>you rated this: <%= order.rating %>
-                <% end %>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-6">
-      <div class="order-listing">
-        <h3>Other</h3>
-        <ul class="padded-list">
-          <% @user.deals.each do |deal| %>
-            <% unless deal.status == "Pending" %>
-              <li>
-                (<%= deal.created_at.strftime("%d-%m-%y: %Hh%M") %>) <%= deal.total_price %>€ | <%= deal.item.name.upcase %> <br>
-                from <%= deal.item.user.first_name + " " + deal.item.user.last_name %>  | status: <%= deal.status %>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<div class="tab-content <%= "hidden" unless deal %>" id="deals">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <div class="order-listing">
+          <h3>Pending</h3>
+          <ul class:"padded-list">
+            <% @user.deals.each do |deal| %>
+              <% if deal.status == "Pending" %>
+                <li>
+                  (<%= deal.created_at.strftime("%d-%m-%y: %Hh%M") %>) <%= deal.total_price %>€ | <%= deal.item.name.upcase %> <br>
+                  from <%= deal.item.user.first_name + " " + deal.item.user.last_name %>  | status: <%= deal.status %>
+                  <% unless deal.message.nil? %>
+                    <br>>> Message:<br>>> <%= deal.message %>
+                  <% end %>
+                  <br><%= link_to "Accept deal", "/users/#{@user.id}/deals/#{deal.id}/accept", class: "btn btn-primary btn-sm" %>
+                  <%= link_to "Reject deal", "/users/#{@user.id}/deals/#{deal.id}/cancel", class: "btn btn-danger btn-sm" %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div class="order-listing">
+          <h3>Other</h3>
+          <ul class="padded-list">
+            <% @user.deals.each do |deal| %>
+              <% unless deal.status == "Pending" %>
+                <li>
+                  (<%= deal.created_at.strftime("%d-%m-%y: %Hh%M") %>) <%= deal.total_price %>€ | <%= deal.item.name.upcase %> <br>
+                  from <%= deal.item.user.first_name + " " + deal.item.user.last_name %>  | status: <%= deal.status %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for(:scripts) do %>
+  <script>
+    $(function(){
+
+      $(".tab").on("click", function(e){
+        // Change active tab
+        $('.tab').removeClass('active')
+        $(this).addClass('active')
+        $('.tab-content').addClass('hidden')
+        var hash = $(this).data("target")
+        $(hash).removeClass('hidden')
+        // Hide all tab-content (use class="hidden")
+
+        // Show target tab-content (use class="hidden")
+      });
+
+    });
+  </script>
+<% end %>
+
