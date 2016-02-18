@@ -59,32 +59,29 @@
           </ul>
         <% end %>
       </div>
-    </div>
-
-    <hr class="dark-hr">
-
-    <%= render "deals/list" unless @user.orders == [] && @user.deals == [] %>
-
-    <hr class="dark-hr">
-
-    <div class="row">
-      <div class="co-xs-12">
-        <hr>
+      <div class="col-xs-12 col-sm-6">
         <% unless @user.deals == [] %>
-          <hr>
-          <h2>Your ratings</h2>
-          <p><strong>Average score: <%= average_score(@user) %>/5</strong></p>
-          <ul class="list-unstyled">
-            <% @user.deals.each do |deal| %>
-              <% unless deal.rating.nil? %>
-                <li>
-                  <%= deal.rating == 0 ? 0 : "*" * deal.rating %> by <%= deal.user.name %>
-                </li>
-              <% end %>
-            <% end %>
-          </ul>
+          <div class="row">
+            <div class="col-xs-12">
+              <h2>Your ratings</h2>
+              <p><strong>Average score: <%= average_score(@user) %>/5</strong></p>
+              <ul class="list-unstyled">
+                <% @user.deals[0..5].each do |deal| %>
+                  <% unless deal.rating.nil? %>
+                    <li>
+                      <%= deal.rating == 0 ? 0 : "*" * deal.rating %> by <%= deal.user.name %>
+                    </li>
+                  <% end %>
+                <% end %>
+              </ul>
+            </div>
+          </div>
         <% end %>
       </div>
     </div>
+    <% unless @user.orders == [] && @user.deals == [] %>
+      <hr class="dark-hr">
+      <%= render "deals/list", deal: false %>
+    <% end %>
   </div>
 </div>
