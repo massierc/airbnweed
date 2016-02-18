@@ -12,8 +12,8 @@
             <%= f.input :address %>
             <%= f.input :city, collection: CITIES %>
             <%= f.input :zipcode %>
-            <%= f.input :start_time %>
-            <%= f.input :end_time %>
+            <%= f.input :start_time, input_html: { min: "00", max: "24"}  %>
+            <%= f.input :end_time, input_html: { min: "00", max: "24"}  %>
             <%= f.input :description %>
           </div>
           <%= f.input :photo, as: :attachinary %>

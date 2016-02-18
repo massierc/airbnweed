@@ -5,14 +5,14 @@
     <div class="col-xs-12 col-sm-6"><%= render "users/user_desc" %></div>
     <% if @user.start_time.nil? %>
       <div class="col-xs-12 col-md-4 col-md-offset-2" style="position: relative;">
-        <div class="padded-form" style="position: absolute; background-color: white;">
+        <div class="padded-form start-dealing">
           <h2 class="text-center">Start dealing</h2>
           <%= simple_form_for([@user]) do |f| %>
             <%= f.input :address %>
             <%= f.input :zipcode %>
             <%= f.input :city, collection: CITIES %>
-            <%= f.input :start_time, label: "When does your shift start?" %>
-            <%= f.input :end_time, label: "When does your shift end?" %>
+            <%= f.input :start_time, label: "When does your shift start?", input_html: { min: "00", max: "24" } %>
+            <%= f.input :end_time, label: "When does your shift end?", input_html: { min: "00", max: "24" } %>
             <%= f.input :description, label: "Tell us a bit about yourself (will appear on your public page)" %>
             <%= f.button :submit, class: "btn btn-primary form-button" %>
           <% end %>
@@ -22,7 +22,7 @@
         <h2 class="text-center">Deal a new drug</h2>
         <%= simple_form_for([@user, @item]) do |f| %>
           <%= f.input :name, collection: DRUGS, prompt: "Pick a product", id: "item" %>
-          <%= f.input :price, label: "Unit Price" %>
+          <%= f.input :price, label: "Price per gram" %>
           <%= f.button :submit, class: "btn btn-primary form-button" %>
         <% end %>
       <% end %>
@@ -30,7 +30,7 @@
   </div>
 </div>
 
-<div class="grey" style="margin-top: 10px;">
+<div class="grey" style="margin-top: 10px; <%= "height: 550px" if @user.items == [] && @user.orders == [] %>">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 text-center">
@@ -44,7 +44,17 @@
         <% else %>
           <ul class="list-unstyled">
             <% @user.items.each do |item| %>
-              <li><%= item.name %>: <%= item.price %>€ / dose</li>
+              <li>
+                <% unless item.in_stock %>
+                  OUT OF STOCK -
+                <% end %>
+                <%= item.name %>: <%= item.price %>€ / gram ||
+                <% if item.in_stock %>
+                  <%= link_to "declare out of stock", out_of_stock_path(@user, item) %>
+                <% else %>
+                  <%= link_to "declare back in stock", back_in_stock_path(@user, item) %>
+                <% end %>
+              </li>
             <% end %>
           </ul>
         <% end %>
@@ -78,4 +88,3 @@
     </div>
   </div>
 </div>
-

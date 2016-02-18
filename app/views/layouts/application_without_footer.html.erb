@@ -16,9 +16,6 @@
     <%= cloudinary_js_config %>
     <%= yield(:scripts) %>
 
-    <div class="footer-push"></div>
-    <%= render 'shared/footer' %>
-
     <script>
       $('document').ready(function() {
         if ( $('.badge-container > .badge')[0].textContent != "0" ) {

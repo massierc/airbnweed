@@ -8,13 +8,14 @@
     <div class="col-xs-12 col-md-4 col-md-offset-2 padded-form">
       <h2 class="text-center">Make a deal</h2>
       <%= simple_form_for([@user, @deal]) do |f| %>
-        <%= f.input :item, collection: @user.items, prompt: "choose a product", id: "item" %>
-        <label class="select optional control-label">Quantity</label><br>
-        <input type="number" id="quantity", value="1">
+        <%= f.input :item, collection: @user.items, label_method: lambda {|item| "#{item.name}: #{item.price}€/g" }, prompt: "choose a product", id: "item" %>
+        <label class="select optional control-label">Quantity (in grams)</label><br>
+        <input type="number" id="quantity", value="1" min="1">
         <%= f.input :total_price, as: :hidden, id: "total_price", class: "hidden" %>
         <p>Total price: <span id="total-price-text"></span>€</p>
         <%= f.input :message %>
-        <%= f.button :submit, "make a deal", class: "btn btn-primary form-button" %>
+        <p id="out_of_stock"><strong></strong></p>
+        <%= f.button :submit, "make a deal", class: "btn btn-primary form-button", id: "submit" %>
       <% end %>
     </div>
   </div>
@@ -32,7 +33,11 @@
         <h2>Products</h2>
         <ul class="list-unstyled">
           <% @user.items.each do |item| %>
-            <li><%= item.name %></li>
+            <li><%= item.name %> - <%= item.price %>€/g
+              <% unless item.in_stock %>
+                - out of stock
+              <% end %>
+            </li>
           <% end %>
         </ul>
       </div>
@@ -64,6 +69,13 @@
         if ( $('#deal_item option:selected').val() === "<%= item.id %>") {
           $('#deal_total_price').val(<%= item.price %> * parseInt($("#quantity").val()))
           $("#total-price-text").text(<%= item.price %> * parseInt($("#quantity").val()))
+          <% if item.in_stock %>
+            $('#out_of_stock > strong').text("");
+            $("#submit").show();
+          <% else %>
+            $('#out_of_stock > strong').text("Sorry, this item is out of stock");
+            $("#submit").hide();
+          <% end %>
         };
       <% end %>
     });

@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   get "users/:user_id/deals/:id/accept" => "deals#accept", as: "accept"
   get "users/:user_id/deals/:id/cancel" => "deals#cancel", as: "cancel"
   get "users/:user_id/deals/:id/rate" => "deals#rate", as: "rate"
+  get "users/:user_id/items/:id/out_of_stock" => "items#out_of_stock", as: "out_of_stock"
+  get "users/:user_id/items/:id/back_in_stock" => "items#back_in_stock", as: "back_in_stock"
   mount Attachinary::Engine => "/attachinary"
 end
