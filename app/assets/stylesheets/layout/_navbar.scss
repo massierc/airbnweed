@@ -46,9 +46,11 @@
   color: #616668;
   font-size: 14px;
 }
+
 .navbar-wagon-link:hover {
-  color: #da552f;
+  color: $green;
   text-decoration: none;
+  border: 2px solid $green;
 }
 
 /* Navbar right button */
