@@ -9,6 +9,7 @@
       <h2 class="text-center">Make a deal</h2>
       <%= simple_form_for([@user, @deal]) do |f| %>
         <%= f.input :item, collection: @user.items, prompt: "choose a product", id: "item" %>
+        <p id="out_of_stock"><strong></strong></p>
         <label class="select optional control-label">Quantity</label><br>
         <input type="number" id="quantity", value="1">
         <%= f.input :total_price, as: :hidden, id: "total_price", class: "hidden" %>
@@ -32,7 +33,11 @@
         <h2>Products</h2>
         <ul class="list-unstyled">
           <% @user.items.each do |item| %>
-            <li><%= item.name %></li>
+            <li><%= item.name %>
+              <% unless item.in_stock %>
+                - out of stock
+              <% end %>
+            </li>
           <% end %>
         </ul>
       </div>
@@ -64,6 +69,11 @@
         if ( $('#deal_item option:selected').val() === "<%= item.id %>") {
           $('#deal_total_price').val(<%= item.price %> * parseInt($("#quantity").val()))
           $("#total-price-text").text(<%= item.price %> * parseInt($("#quantity").val()))
+          <% if item.in_stock %>
+            $('#out_of_stock > strong').text("");
+          <% else %>
+            $('#out_of_stock > strong').text("Sorry, this item is out of stock");
+          <% end %>
         };
       <% end %>
     });

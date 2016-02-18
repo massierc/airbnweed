@@ -5,7 +5,7 @@
     <div class="col-xs-12 col-sm-6"><%= render "users/user_desc" %></div>
     <% if @user.start_time.nil? %>
       <div class="col-xs-12 col-md-4 col-md-offset-2" style="position: relative;">
-        <div class="padded-form" style="position: absolute; background-color: white;">
+        <div class="padded-form start-dealing">
           <h2 class="text-center">Start dealing</h2>
           <%= simple_form_for([@user]) do |f| %>
             <%= f.input :address %>
@@ -44,7 +44,17 @@
         <% else %>
           <ul class="list-unstyled">
             <% @user.items.each do |item| %>
-              <li><%= item.name %>: <%= item.price %>€ / dose</li>
+              <li>
+                <% unless item.in_stock %>
+                  OUT OF STOCK -
+                <% end %>
+                <%= item.name %>: <%= item.price %>€ / gram ||
+                <% if item.in_stock %>
+                  <%= link_to "declare out of stock", out_of_stock_path(@user, item) %>
+                <% else %>
+                  <%= link_to "declare back in stock", back_in_stock_path(@user, item) %>
+                <% end %>
+              </li>
             <% end %>
           </ul>
         <% end %>
