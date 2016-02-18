@@ -1,7 +1,7 @@
 <% unless @user.items == [] %>
   <div class="header">
     <% if @user.items.first.name == "Weed" %>
-      <%= image_tag "weed.jpg" %>
+      <%= image_tag "weed.jpg"%>
     <% elsif @user.items.first.name == "MDMA" || @user.items.first.name == "Ecstasy" %>
       <%= image_tag "MDMA.jpg" %>
     <% elsif @user.items.first.name == "Cocaine" %>

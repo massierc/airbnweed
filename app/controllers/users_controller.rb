@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
   def index
-    if params[:drug].nil?
+    if params[:drug].nil? || params[:drug] == ""
       drug = User.select { |dealer| dealer.items.length > 0 }
     else
       drug = User.select { |dealer| dealer.items.length > 0 }
