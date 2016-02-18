@@ -1,4 +1,9 @@
-<% unless @user.items == [] %>
+<% if @user.items == [] %>
+  <div class="header">
+    <%=image_tag "weed.jpg" %>
+  </div>
+
+ <% else %>
   <div class="header">
     <% if @user.items.first.name == "Weed" %>
       <%= image_tag "weed.jpg"%>
@@ -20,4 +25,5 @@
       <%= image_tag "bbqsauce.jpg" %>
     <% end %>
   </div>
+
 <% end %>
