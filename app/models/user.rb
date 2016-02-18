@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :orders, class_name:'Deal'
 
   def name
-    return self.first_name + " " + self.last_name unless first_name.nil? || last_name.nil?
+    return self.first_name + " " + self.last_name
   end
 
   def self.find_for_facebook_oauth(auth)
