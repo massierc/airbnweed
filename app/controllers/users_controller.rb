@@ -25,6 +25,17 @@ class UsersController < ApplicationController
       end
     end
 
+    def average_score(user)
+      total = 0
+      return total if user.deals.length == 0
+      user.deals.each do |deal|
+        total += deal.rating unless deal.rating.nil?
+      end
+      return total / (user.deals.length)
+    end
+
+    @filtered_dealers = @filtered_dealers.sort_by { |dealer| average_score(dealer) }.reverse
+
     @markers = Gmaps4rails.build_markers(@filtered_dealers) do |dealer, marker|
       marker.lat dealer.latitude
       marker.lng dealer.longitude
