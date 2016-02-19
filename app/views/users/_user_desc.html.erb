@@ -12,10 +12,10 @@
   <div>
     <h1><%= @user.name %></h1>
     <% unless @user.city == "" %>
-      <p>From <%= @user.city %>, <%= @user.zipcode %></p>
+      <p><i class="fa fa-globe user-desc-icons"></i><%= @user.city %>, <%= @user.zipcode %></p>
     <% end %>
     <% unless @user.start_time.nil? %>
-      <p>Available from <%= @user.start_time %>h to <%= @user.end_time %>h</p>
+      <p><i class="fa fa-clock-o user-desc-icons"></i><%= @user.start_time %>h > <%= @user.end_time %>h</p>
     <% end %>
   </div>
 </div>
