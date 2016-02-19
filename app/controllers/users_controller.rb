@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       params[:drug] = [params[:drug]] if params[:drug].class == String
       drug = User.select { |dealer| dealer.items.length > 0 }
       params[:drug].each do |drug_param|
-        drug = drug.select { |dealer| Item.where(name: "#{drug_param}").map(&:user_id).include? dealer.id }
+        drug = drug.select { |dealer| Item.where(name: "#{drug_param.strip.capitalize}").map(&:user_id).include? dealer.id }
       end
     end
 
