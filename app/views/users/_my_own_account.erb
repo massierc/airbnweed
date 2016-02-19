@@ -50,16 +50,20 @@
         <% else %>
           <ul class="list-unstyled">
             <% @user.items.each do |item| %>
-              <li>
-                <% unless item.in_stock %>
-                  OUT OF STOCK -
-                <% end %>
-                <%= item.name %>: <%= item.price %>€ / gram ||
+              <li class="align-left">
+                <div><p>
+                  <% unless item.in_stock %>
+                    OUT OF STOCK -
+                  <% end %>
+                  <%= item.name %>: <%= item.price %>€ / gram</p>
+                </div>
+                <div>
                 <% if item.in_stock %>
-                  <%= link_to "declare out of stock", out_of_stock_path(@user, item) %>
+                  <%= link_to "Declare out of stock", out_of_stock_path(@user, item), class: "btn btn-danger custom"%>
                 <% else %>
-                  <%= link_to "declare back in stock", back_in_stock_path(@user, item) %>
+                  <%= link_to "Declare back in stock", back_in_stock_path(@user, item), class: "btn btn-primary custom" %>
                 <% end %>
+                </div>
               </li>
             <% end %>
           </ul>
