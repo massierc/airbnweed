@@ -39,7 +39,7 @@
                     <div class="deal-buttons">
                       Rate this deal:
                       <% (1..5).each do |n| %>
-                        <%= link_to rate_path(@user.id, order.id, rating: n) do %>
+                        <%= link_to rate_path(@user.id, order.id, rating: n), id: "rating-#{n}" do %>
                           <i class="fa fa-star"></i>
                         <% end %>
                       <% end %>
@@ -103,6 +103,14 @@
 <%= content_for(:scripts) do %>
   <script>
     $(function(){
+
+      <% (1..5).each do |n| %>
+        $('#rating-<%= n %>').hover(function() {
+          <% (1..n).each do |star_index| %>
+            $("#rating-<%= star_index %>").toggleClass("icons-hover");
+          <% end %>
+        });
+      <% end %>
 
       $(".tab").on("click", function(e){
         // Change active tab

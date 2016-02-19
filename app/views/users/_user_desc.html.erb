@@ -1,12 +1,32 @@
 <div class="user_desc">
-  <%= cl_image_tag(@user.photo.path, height: 200, width: 200, style: "border-radius: 50%", class: "avatar-margin") unless @user.photo.nil? %>
+  <% if @user.photo.nil? && @user != current_user %>
+    <% random_photo = "http://api.randomuser.me/portraits/#{rand > 0.5 ? "men" : "women"}/#{(rand * (96 - 1) + 1).round}.jpg" %>
+    <img src="<%= random_photo %>" class="avatar-margin", style="border-radius: 50%; height: 200px; width: 200px;">
+  <% elsif @user.photo.nil? %>
+    <%= link_to edit_user_path(current_user) do %>
+      <div class="text-center no-photo avatar-margin"><p>You have no photo yet! Click here to upload one</p></div>
+    <% end %>
+  <% else %>
+    <%= cl_image_tag(@user.photo.path, height: 200, width: 200, style: "border-radius: 50%", class: "avatar-margin") %>
+  <% end %>
   <div>
     <h1><%= @user.name %></h1>
-    <% unless @user.city == "" %>
-      <p>From <%= @user.city %>, <%= @user.zipcode %></p>
+    <% unless @user.city == "" || @user.city.nil? %>
+      <p><i class="fa fa-globe user-desc-icons"></i><%= @user.city %>, <%= @user.zipcode %></p>
     <% end %>
-    <% unless @user.start_time.nil? %>
-      <p>Available from <%= @user.start_time %>h to <%= @user.end_time %>h</p>
+    <% unless @user.start_time.nil? || @user.start_time == "" %>
+      <p><i class="fa fa-clock-o user-desc-icons"></i><%= @user.start_time %>h > <%= @user.end_time %>h</p>
     <% end %>
+    <div>
+      <p>
+        <ul class='list-inline'>
+          <% @user.items.each do |item| %>
+            <li class="product-drug-lg">
+              <%= item.name %>
+            </li>
+          <% end %>
+        </ul>
+      </p>
+    </div>
   </div>
 </div>
