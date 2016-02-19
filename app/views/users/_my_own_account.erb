@@ -87,6 +87,7 @@
     </div>
     <% unless @user.orders == [] && @user.deals == [] %>
       <hr class="dark-hr">
+      <p id="deals"></p>
       <%= render "deals/list", deal: false %>
     <% end %>
   </div>
