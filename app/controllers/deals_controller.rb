@@ -22,7 +22,7 @@ class DealsController < ApplicationController
     @deal.user = current_user
     @deal.message = nil if @deal.message == ""
     @deal.save
-    redirect_to user_deals_path(current_user)
+    redirect_to user_path(current_user, anchor: "deals")
   end
 
   def rate

@@ -12,7 +12,17 @@ class User < ActiveRecord::Base
   after_validation :geocode, if: :address_changed?
 
   def name
-    return self.first_name + " " + self.last_name unless first_name.nil? || last_name.nil?
+    self.first_name = nil if self.first_name == ""
+    self.last_name = nil if self.last_name == ""
+    if self.first_name.nil? || self && self.last_name.nil?
+      return "Anonymous"
+    elsif self.first_name.nil?
+      return self.last_name
+    elsif self.last_name.nil?
+      return self.first_name
+    else
+      return self.first_name + " " + self.last_name
+    end
   end
 
   def full_address
