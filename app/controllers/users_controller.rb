@@ -21,7 +21,8 @@ class UsersController < ApplicationController
       @filtered_dealers = city
     else
       @filtered_dealers = city.select do |dealer|
-        dealer.start_time < params[:time].to_i && dealer.end_time > params[:time].to_i
+        time = DateTime.parse(params[:time]).strftime("%H:%M")
+        dealer.start_time < time.to_i && dealer.end_time > time.to_i
       end
     end
 
