@@ -19,3 +19,9 @@
   position: relative;
   z-index: 10;
 }
+.background-grey {
+  background-color: $gray-lighter;
+  padding-top: 33px;
+  margin-top: 0px;
+  min-height: 500px;
+}
