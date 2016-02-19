@@ -40,7 +40,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12 text-center">
-        <h2>About <%= @user.first_name %></h2>
+        <h2>About <%= @user.first_name.nil? || @user.first_name == "" ? @user.name : @user.first_name %></h2>
         <p><%= @user.description %></p>
       </div>
       <div class="col-xs-12 col-sm-6">

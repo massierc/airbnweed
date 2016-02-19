@@ -4,17 +4,17 @@
     <img src="<%= random_photo %>" class="avatar-margin", style="border-radius: 50%; height: 200px; width: 200px;">
   <% elsif @user.photo.nil? %>
     <%= link_to edit_user_path(current_user) do %>
-      <div class="avatar-margin text-center no-photo"><p>You have no photo yet! Click here to upload one</p></div>
+      <div class="text-center no-photo avatar-margin"><p>You have no photo yet! Click here to upload one</p></div>
     <% end %>
   <% else %>
     <%= cl_image_tag(@user.photo.path, height: 200, width: 200, style: "border-radius: 50%", class: "avatar-margin") %>
   <% end %>
   <div>
     <h1><%= @user.name %></h1>
-    <% unless @user.city == "" %>
+    <% unless @user.city == "" || @user.city.nil? %>
       <p><i class="fa fa-globe user-desc-icons"></i><%= @user.city %>, <%= @user.zipcode %></p>
     <% end %>
-    <% unless @user.start_time.nil? %>
+    <% unless @user.start_time.nil? || @user.start_time == "" %>
       <p><i class="fa fa-clock-o user-desc-icons"></i><%= @user.start_time %>h > <%= @user.end_time %>h</p>
     <% end %>
   </div>
