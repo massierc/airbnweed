@@ -92,6 +92,9 @@
     <% unless @user.orders == [] && @user.deals == [] %>
       <!-- <hr class="dark-hr"> -->
       <p id="deals"></p>
+      <% if @user.start_time.nil? || @user.start_time == "" %>
+      <div style="margin-top: 300px;"></div>
+      <% end %>
       <%= render "deals/list", deal: false %>
     <% end %>
   </div>
