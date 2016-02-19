@@ -85,11 +85,6 @@
     <%= link_to dealer do %>
       <div class="product">
 
-        <div class='product-upvote'>
-          <i class="fa fa-thumbs-o-up"></i>
-          <div class='product-count'><%= dealer.deals.length == 0 ? 0 : average_score(dealer) %></div>
-        </div>
-
         <% if dealer.photo.nil? %>
           <img src="<%= random_photo %>" alt="<%= dealer.name %>" class="product-image">
         <% else %>
@@ -118,7 +113,20 @@
           </p>
         </div>
 
-        <i class="fa fa-star product-controls"></i>
+        <ul class="list-inline product-controls-list">
+          <% if dealer.deals.length == 0 %>
+            <% 5.times do %>
+              <li><i class="fa fa-star product-controls"></i></li>
+            <% end %>
+          <% else %>
+            <% average_score(dealer).times do %>
+              <li><i class="fa fa-star product-controls" id="full-star"></i></li>
+            <% end %>
+            <% (5 - average_score(dealer)).times do %>
+              <li><i class="fa fa-star product-controls"></i></li>
+            <% end %>
+          <% end %>
+        </ul>
 
       </div>
     <% end %>

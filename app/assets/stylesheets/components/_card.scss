@@ -90,8 +90,9 @@
 /* Product image */
 .product-image {
   flex: 0 0 auto;
-  margin-right: 20px;
+  margin: 0 20px 0 15px;
   width: 90px;
+  height: 90px;
   border-radius: 50%;
   background-color: linear-gradient(-225deg, rgba(0,101,168,0.2) 0%, rgba(0,36,61,0.4) 50%);
 }
@@ -130,11 +131,18 @@
   padding: 0 20px;
   font-size: 17px;
   color: #E6E6E6;
+  padding: 0;
   text-decoration: none;
 }
-.product-controls:hover {
+#full-star {
   color: #FFCC66 !important;
-  text-decoration: none;
+}
+
+.product-controls-list {
+  margin-right: 20px;
+  li {
+    padding: 0;
+  }
 }
 
 /* Hover effects */

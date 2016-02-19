@@ -3,8 +3,12 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.in_stock = true
     @item.user = current_user
-    @item.save
-    redirect_to user_path(current_user)
+    if @item.save
+      redirect_to user_path(current_user)
+    else
+      alert = @item.errors.messages.first.flatten.join(": ")
+      redirect_to(:back, alert: alert)
+    end
   end
 
   def out_of_stock

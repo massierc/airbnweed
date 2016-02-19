@@ -1,6 +1,8 @@
 @import "home";
 @import "dealers";
 @import "list";
+@import "user_desc";
+@import "bye";
 
 .avatar-margin {
   margin: 0 30px;
@@ -65,4 +67,14 @@
 
 .order-listing {
   padding-left: 20px;
+}
+.custom {
+    font-size: 10px;
+    padding: 2px;
+    height: 20px;
+}
+
+.align-left {
+  display: flex;
+  justify-content: space-between;
 }
