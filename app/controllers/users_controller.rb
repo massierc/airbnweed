@@ -35,7 +35,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @deal = Deal.new
     @item = Item.new
-    @user_coordinates = { lat: @user.latitude, lng: @user.longitude }
+    @marker = Gmaps4rails.build_markers(@user) do |dealer, marker|
+      marker.lat dealer.latitude
+      marker.lng dealer.longitude
+    end
   end
 
   def new
