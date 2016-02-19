@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :deals, through: :items
   has_many :orders, class_name:'Deal'
 
-  geocoded_by :city
+  geocoded_by :full_address
   after_validation :geocode, if: :address_changed?
 
   def name
