@@ -9,13 +9,6 @@
 
       <form action="/users" class="form-inline search-bar">
           <input name="drug[]" type="text" class="form-control" placeholder="Weed">
-          <select name="city" class="form-control">
-              <option value="" selected>Select city</option>
-              <% CITIES.each do |city| %>
-                <option><%= city %></option>
-              <% end %>
-          </select>
-
           <div class="form-group">
             <div class='input-group date' id='datetimepicker3'>
               <input name="time" id="time" type='text' class="form-control" />
@@ -24,6 +17,14 @@
               </span>
             </div>
           </div>
+          <select name="city" class="styled-select">
+              <option value="" selected>Select city</option>
+              <% CITIES.each do |city| %>
+                <option><%= city %></option>
+              <% end %>
+          </select>
+
+
           <% content_for(:scripts) do %>
             <%= javascript_tag do %>
               $(function () {

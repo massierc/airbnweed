@@ -3,10 +3,13 @@
  * (margin/padding adjustments)
  * ------------------------------------- */
 .search-bar input {
-  margin: 0 -2px 0 0;
+  margin: 0 -5px 0 0px;
 }
 .search-bar select {
-  margin: 0 -2px 0 0;
+  margin: 0 0 0 -2px;
+}
+.search-bar .input-group-addon {
+   margin-right: 0px;
 }
 .search-container {
     background-color: #000;
@@ -17,4 +20,17 @@
     padding-top: 30px;
     position: absolute;
     right: 0;
+}
+.styled-select {
+   width: 240px;
+   padding-left: 4px;
+   height: 36px;
+   border: 0px solid #ccc;
+   position: relative;
+   border-radius: 0px;
+   top: 2px;
+   color: $gray-light;
+   }
+select {
+   -webkit-appearance: none;
 }
