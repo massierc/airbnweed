@@ -1,7 +1,7 @@
 <% if @user != current_user %>
   <%= render "shared/unauthorized" %>
 <% else %>
-  <div class="padded">
+  <div class="background-grey">
     <%= render "deals/list", deal: true %>
   </div>
 <% end %>
