@@ -67,7 +67,7 @@
               <% if deal.status == "Pending" %>
                 <li>
                   (<%= deal.created_at.strftime("%d-%m-%y: %Hh%M") %>) <%= deal.total_price %>€ | <%= deal.item.name.upcase %> <br>
-                  from <%= deal.item.user.name %>  | status: <%= deal.status %>
+                  from <%= deal.user.name %>  | status: <%= deal.status %>
                   <% unless deal.message.nil? %>
                     <br>>> Message:<br>>> <%= deal.message %>
                   <% end %>
@@ -89,7 +89,7 @@
               <% unless deal.status == "Pending" %>
                 <li>
                   (<%= deal.created_at.strftime("%d-%m-%y: %Hh%M") %>) <%= deal.total_price %>€ | <%= deal.item.name.upcase %> <br>
-                  from <%= deal.item.user.name %>  | status: <%= deal.status %>
+                  from <%= deal.user.name %>  | status: <%= deal.status %>
                 </li>
               <% end %>
             <% end %>
