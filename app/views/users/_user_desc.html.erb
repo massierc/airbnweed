@@ -17,5 +17,16 @@
     <% unless @user.start_time.nil? || @user.start_time == "" %>
       <p><i class="fa fa-clock-o user-desc-icons"></i><%= @user.start_time %>h > <%= @user.end_time %>h</p>
     <% end %>
+    <div>
+      <p>
+        <ul class='list-inline'>
+          <% @user.items.each do |item| %>
+            <li class="product-drug-lg">
+              <%= item.name %>
+            </li>
+          <% end %>
+        </ul>
+      </p>
+    </div>
   </div>
 </div>
